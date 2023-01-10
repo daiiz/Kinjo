@@ -11,16 +11,6 @@ function loadScript (url) {
     })
 }
 
-// async function loadAll() {
-//     await loadScript('https://scrapbox.io/api/code/masui/POI/poi.js')
-// }
-
-$(function(){
-    //loadAll()
-    // setTimeout(function(){ alert(data[2]) }, 5000)
-    // alert(data[2])
-})
-
 function distance(lat1, lng1, lat2, lng2) {
     const R = Math.PI / 180;
     lat1 *= R;
