@@ -60,8 +60,8 @@ var curlatitude, curlongitude
 
 function calc(){
     for(var i=0;i<locations.length;i++){
-    entry = locations[i]
-    entry.distance = distance(entry.latitude,entry.longitude,curlatitude,curlongitude)
+        entry = locations[i]
+        entry.distance = distance(entry.latitude,entry.longitude,curlatitude,curlongitude)
     }
     locations.sort((a, b) => { // 近い順にソート
     return a.distance > b.distance ? 1 : -1;
