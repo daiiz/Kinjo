@@ -20,13 +20,23 @@ function distance(lat1, lng1, lat2, lng2) {
     return 6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
 }
 
-var locations = []
-for (let i = 0; i < data.length; i++){
+const mergedData = (() => {
+    const dataNames = Array.from(document.querySelectorAll('script[data-name]')).map(elem => elem.dataset.name)
+    const res = [...data /* /masui/POI */]
+    for (const dataName of dataNames) {
+        res.push(...window["poi_data_" + dataName])
+    }
+    return res
+})()
+console.log("mergedData size:", mergedData.length)
+
+const locations = []
+for (let i = 0; i < mergedData.length; i++){
     const entry = {}
     // Scrapbox project URL
-    const  m = data[i].match(/\[\/(.*)\/(.*)\]\s+.*@([\d\.]+),([\d\.]+),(\d+)z/)
+    const  m = mergedData[i].match(/\[\/(.*)\/(.*)\]\s+.*@([\d\.]+),([\d\.]+),(\d+)z/)
     // Webpage URL
-    const  m1 = data[i].match(/\[(https?:\/\/.*)\s(.*)\]\s+.*@([\d\.]+),([\d\.]+),(\d+)z/)
+    const  m1 = mergedData[i].match(/\[(https?:\/\/.*)\s(.*)\]\s+.*@([\d\.]+),([\d\.]+),(\d+)z/)
 
     if (m) {
         entry.project = m[1]
