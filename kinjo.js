@@ -60,30 +60,30 @@ var curlatitude, curlongitude
 
 function calc(){
     for(var i=0;i<locations.length;i++){
-	entry = locations[i]
-	entry.distance = distance(entry.latitude,entry.longitude,curlatitude,curlongitude)
+    entry = locations[i]
+    entry.distance = distance(entry.latitude,entry.longitude,curlatitude,curlongitude)
     }
     locations.sort((a, b) => { // 近い順にソート
-	return a.distance > b.distance ? 1 : -1;
+    return a.distance > b.distance ? 1 : -1;
     });
     // alert(locations[0].distance)
     for(var i=0;i<10;i++){
-	let loc = locations[i]
-	let li = $('<li>')
-	let e = $('<a>')
+    let loc = locations[i]
+    let li = $('<li>')
+    let e = $('<a>')
     e.text(loc.title)
     if (loc.project) {
         e.attr('href', `https://scrapbox.io/${loc.project}/${loc.title}`)
     } else {
         e.attr('href', loc.url)
     }
-	li.append(e)
-	li.append($('<span>').text(' '))
-	let map = $('<a>')
-	map.text('map')
-	map.attr('href',`https://www.google.com/maps/@${loc.latitude},${loc.longitude},${loc.zoom}z`)
-	li.append(map)
-	$('#list').append(li)
+    li.append(e)
+    li.append($('<span>').text(' '))
+    let map = $('<a>')
+    map.text('map')
+    map.attr('href',`https://www.google.com/maps/@${loc.latitude},${loc.longitude},${loc.zoom}z`)
+    li.append(map)
+    $('#list').append(li)
     }
 }
 
