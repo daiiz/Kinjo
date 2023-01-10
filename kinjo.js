@@ -52,7 +52,7 @@ for (let i = 0; i < data.length; i++){
         entry.longitude = m1[4]
         entry.zoom = m1[5]
     }
-    console.log(entry)
+    // console.log(entry)
     locations.push(entry)
 }
 
